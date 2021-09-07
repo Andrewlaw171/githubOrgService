@@ -12,7 +12,7 @@ class TestApi(unittest.TestCase):
         with unittest.mock.patch.object(
                 requests, 'get', return_value=Mock(status_code=200, json=lambda: TestMemberListResponse.TEST_MEMBER_LIST)
         ):
-            github_utils = GithubUtils("test")
+            github_utils = GithubUtils("test", "test")
 
             github_utils.get_member_follower_count = Mock()
             github_utils.get_member_follower_count.side_effect = [1, 2, 3, 4, 5]
@@ -32,7 +32,7 @@ class TestApi(unittest.TestCase):
             GithubMember('3', "Guy", 999999)
         ]
 
-        github_utils = GithubUtils('test')
+        github_utils = GithubUtils('test', 'test')
 
         github_utils.members = member_list
         member = github_utils.get_highest_follower_count()
