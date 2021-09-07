@@ -1,6 +1,5 @@
 import requests
 
-from flask import jsonify
 from src.config.config import GithubMember
 from operator import attrgetter
 
