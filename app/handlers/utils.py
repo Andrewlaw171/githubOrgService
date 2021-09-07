@@ -4,20 +4,25 @@ from app.config.config import GithubMember
 from operator import attrgetter
 
 
+
+
+
 class GithubUtils(object):
     def __init__(self, organisation):
         self.organisation = organisation
         self.members = []
 
-    def populate_members(self):
-        organisation_members = requests.get("https://api.github.com/orgs/" + self.organisation + "/members")
+    def get_member_follower_count(self, username):
+        return requests.get("https://api.github.com/users/" + username).json()['followers']
 
-        for member in organisation_members.json():
+    def populate_members(self):
+        organisation_members = requests.get("https://api.github.com/orgs/" + self.organisation + "/members").json()
+
+        for member in organisation_members:
             username = member['login']
             github_id = member['id']
 
-            member_details = requests.get("https://api.github.com/users/" + username)
-            follower_count = member_details['followers']
+            follower_count = self.get_member_follower_count(username)
 
             self.members.append(GithubMember(github_id, username, follower_count))
 
