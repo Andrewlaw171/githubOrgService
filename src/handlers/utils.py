@@ -1,5 +1,6 @@
 import requests
 
+from flask import jsonify
 from src.config.config import GithubMember
 from operator import attrgetter
 
@@ -13,9 +14,12 @@ class GithubUtils(object):
         return requests.get("https://api.github.com/users/" + username).json()['followers']
 
     def populate_members(self):
-        organisation_members = requests.get("https://api.github.com/orgs/" + self.organisation + "/members").json()
+        response = requests.get("https://api.github.com/orgs/" + self.organisation + "/members")
 
-        for member in organisation_members:
+        if response.status_code == 403:
+            raise RuntimeError("Github API rate limit exceeded", 403)
+
+        for member in response.json():
             username = member['login']
             github_id = member['id']
 
