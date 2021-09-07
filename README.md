@@ -3,7 +3,7 @@ githubOrgService is a flask application that provides a REST API for users to re
 
 ### Running Locally
 
-1. Create a new venv `python3 -m venv venv` and `pip install -r requirements.txt`
+1. Create a new venv `python3 -m venv venv` and `pip install -r requirements.txt` (Note: This app was developed on Python3.9 and it is the recommended version)
 2. Edit the run configuration of app.py to include your github access token in `ACCESS_TOKEN=<access_token>`
 3. Run app.py in your ide
 
