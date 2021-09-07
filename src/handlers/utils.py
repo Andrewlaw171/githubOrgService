@@ -1,10 +1,7 @@
 import requests
 
-from app.config.config import GithubMember
+from src.config.config import GithubMember
 from operator import attrgetter
-
-
-
 
 
 class GithubUtils(object):
@@ -29,4 +26,4 @@ class GithubUtils(object):
     def get_highest_follower_count(self):
         highest_followed_member = max(self.members, key=attrgetter('follower_count'))
 
-        return highest_followed_member.github_id
+        return highest_followed_member

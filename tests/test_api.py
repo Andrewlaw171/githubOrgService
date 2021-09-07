@@ -1,8 +1,8 @@
 import unittest
 import requests
 
-from app.config.config import GithubMember
-from app.handlers.utils import GithubUtils
+from src.config.config import GithubMember
+from src.handlers.utils import GithubUtils
 from unittest.mock import patch, Mock
 from tests.test_data import TestMemberListResponse
 
@@ -35,7 +35,8 @@ class TestApi(unittest.TestCase):
         github_utils = GithubUtils('test')
 
         github_utils.members = member_list
-        assert github_utils.get_highest_follower_count() == '3'
+        member = github_utils.get_highest_follower_count()
+        assert member.github_id == '3'
 
 
 if __name__ == '__main__':
