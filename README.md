@@ -1,5 +1,5 @@
 # githubOrgService
-githubOrgService is a flask application that enables users to return the member with the most followers in a Github organization.
+githubOrgService is a flask application that provides a REST API for users to return the member of a Github organization with the highest number of followers.
 
 ### Running Locally
 
